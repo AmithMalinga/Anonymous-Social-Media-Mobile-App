@@ -1,72 +1,49 @@
 import React from 'react';
-import { TextInput, Text, View, TouchableOpacity, StyleSheet } from 'react-native'; // Added imports
-import MainFont from './src/components/MainFont';
+import { Button, Dimensions, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-function App(): React.JSX.Element {
+const { width, height } = Dimensions.get('window');
+function LoginField() {
   return (
-    <View style={styles.container}>
-      
-      {/* <MainFont>Hello Anonymous!</MainFont> */}
-
-      <TextInput
-        style={{
-          fontFamily: 'Cagliostro',
-          borderWidth: 1,
-          borderColor: '#4DA5B9',
-          borderRadius: 5,
-          width: 250,
-          marginTop: 250,
-          height: 40,
-          paddingLeft: 20,
-          fontSize: 12,
-        }}
-        placeholder="Email"
-      />
-
-      <TextInput
-        style={{
-          borderWidth: 1,
-          borderColor: '#4DA5B9',
-          borderRadius: 5,
-          width: 250,
-          marginTop: 10,
-          height: 40,
-          paddingLeft: 20,
-          fontSize: 12,
-        }}
-        placeholder="Password"
-        secureTextEntry={true}
-      />
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          // Handle login logic here
-        }}
-      >
-        <Text style={styles.buttonText}>Login</Text>
+    <View style={{ alignItems: 'center', marginTop: 283 }}>
+      <View style={{ backgroundColor: 'transparent', borderWidth: 1, borderColor: '#4DA5B9', borderRadius: 5, width: 280, height: 45, paddingLeft: 10 }}>
+        <TextInput placeholder='Email' style={{ color: 'black' }} placeholderTextColor={'black'} />
+      </View>
+      <View style={{ backgroundColor: 'transparent', borderWidth: 1, borderColor: '#4DA5B9', borderRadius: 5, width: 280, height: 45, paddingLeft: 10, marginTop: 20 }}>
+        <TextInput placeholder='Password' style={{ color: 'black' }} placeholderTextColor={'black'} />
+      </View>
+      <ForgetPassword>Forgot Password</ForgetPassword>
+      <TouchableOpacity style={{ backgroundColor: '#4DA5B9', padding: 10, borderRadius: 5, marginTop: 40, width:280, height:45 }}>
+        <Text style={{ color: 'white', textAlign: 'center', fontSize:15, fontWeight:'600' }}>Login</Text>
       </TouchableOpacity>
+      <ForgetPassword style={{ marginTop:5 }}>Create new account</ForgetPassword>
+
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    padding: 20,
-  },
-  button: {
-    backgroundColor: '#4DA5B9',
-    borderRadius: 5,
-    marginTop: 10,
-    padding: 10,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    textAlign: 'center',
-    width:232,
-  },
-});
+
+function ForgetPassword(props:any) {
+  return (
+    <Text style={{ fontSize: 14, fontWeight: '600', color: 'black', alignSelf: 'center', marginTop: 55 , ...props.style}}>{props.children}</Text>
+  )
+}
+
+function App(): React.JSX.Element {
+  return (
+    <View style={{ flex: 1 }}>
+      <Image
+        style={{ width: width, height: height, position: 'absolute' }}
+        source={require('../Anonymous-Social-Media-Mobile-App/Assets/img/loginbg.png')}
+        resizeMode='cover'
+      />
+
+      <KeyboardAwareScrollView keyboardShouldPersistTaps={'never'}>
+        <LoginField />
+      </KeyboardAwareScrollView>
+
+    </View>
+  );
+}
 
 export default App;
