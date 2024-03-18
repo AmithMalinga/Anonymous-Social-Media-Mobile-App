@@ -4,7 +4,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 
 const { width, height } = Dimensions.get('window');
-function LoginField() {
+function LoginField(props:any) {
+
+  const stack = props.stack;
+
   return (
     <View style={{ alignItems: 'center', marginTop: 283 }}>
       <View style={{ backgroundColor: 'transparent', borderWidth: 1, borderColor: '#4DA5B9', borderRadius: 5, width: 280, height: 45, paddingLeft: 10 }}>
@@ -19,12 +22,20 @@ function LoginField() {
       <TouchableOpacity style={{ backgroundColor: '#4DA5B9', padding: 10, borderRadius: 5, marginTop: 40, width:280, height:45 }}>
         <Text style={{ color: 'white', textAlign: 'center', fontSize:15, fontWeight:'600' }}>Register</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={gotoLogin}>
       <ForgetPassword style={{ marginTop:5 }}>Already have an account?</ForgetPassword>
+      </TouchableOpacity>
+
       <ForgetPassword style={{ marginTop:2 }}>Forgot Password?</ForgetPassword>
 
 
     </View>
   );
+
+
+  function gotoLogin(){
+    stack.navigate('Login');
+}
 }
 function ForgetPassword(props:any) {
     return (
@@ -32,7 +43,12 @@ function ForgetPassword(props:any) {
     )
   }
 
-const RegisterScreen = () => {
+
+
+
+const RegisterScreen = (props: any) => {
+  const stack = props.navigation;
+
   return (
     <View style={{ flex: 1 }}>
       <Image
@@ -42,7 +58,7 @@ const RegisterScreen = () => {
       />
 
       <KeyboardAwareScrollView keyboardShouldPersistTaps={'never'}>
-        <LoginField />
+        <LoginField stack={stack}/>
       </KeyboardAwareScrollView>
 
     </View>     

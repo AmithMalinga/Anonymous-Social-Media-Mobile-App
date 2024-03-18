@@ -16,7 +16,7 @@ function LoginField(props: any) {
                 <TextInput placeholder='Password' style={{ color: 'black' }} placeholderTextColor={'black'} />
             </View>
             <ForgetPassword>Forgot Password</ForgetPassword>
-            <TouchableOpacity  style={{ backgroundColor: '#4DA5B9', padding: 10, borderRadius: 5, marginTop: 40, width: 280, height: 45 }}>
+            <TouchableOpacity onPress={gotoHome} style={{ backgroundColor: '#4DA5B9', padding: 10, borderRadius: 5, marginTop: 40, width: 280, height: 45 }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontSize: 15, fontWeight: '600' }}>Login</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={gotoRegister}>
@@ -28,6 +28,12 @@ function LoginField(props: any) {
     function gotoRegister() {
         stack.navigate('Register');
     }
+
+    function gotoHome(){
+        stack.navigate('Home');
+    }
+
+    
 }
 function ForgetPassword(props: any) {
     return (

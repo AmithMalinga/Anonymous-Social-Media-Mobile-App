@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../LoginScreen';
 import RegisterScreen from '../RegisterScreen';
+import HomeScreen from '../HomeScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ const AppNavigation = () => {
                         cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS
                     }
                 } />
+                <Stack.Screen name="Home" component={HomeScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )
