@@ -19,10 +19,10 @@ function LoginField(props:any) {
       <View style={{ backgroundColor: 'transparent', borderWidth: 1, borderColor: '#4DA5B9', borderRadius: 5, width: 280, height: 45, paddingLeft: 10, marginTop: 20 }}>
         <TextInput placeholder='Confirm Password' style={{ color: 'black' }} placeholderTextColor={'black'} />
       </View>
-      <TouchableOpacity style={{ backgroundColor: '#4DA5B9', padding: 10, borderRadius: 5, marginTop: 40, width:280, height:45 }}>
+      <TouchableOpacity activeOpacity={0.7} style={{ backgroundColor: '#4DA5B9', padding: 10, borderRadius: 5, marginTop: 40, width:280, height:45 }}>
         <Text style={{ color: 'white', textAlign: 'center', fontSize:15, fontWeight:'600' }}>Register</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={gotoLogin}>
+      <TouchableOpacity activeOpacity={0.7} onPress={gotoLogin}>
       <ForgetPassword style={{ marginTop:5 }}>Already have an account?</ForgetPassword>
       </TouchableOpacity>
 
