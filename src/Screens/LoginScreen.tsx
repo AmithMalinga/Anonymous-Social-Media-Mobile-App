@@ -1,6 +1,8 @@
 import { View, Text, Dimensions, TextInput, TouchableOpacity, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../Firebase/firebaseinit';
 
 
 const { width, height } = Dimensions.get('window');
@@ -8,8 +10,8 @@ function LoginField(props: any) {
     const stack = props.stack;
     const [userEmail,setUserEmail] = useState(" "); 
     const [userPassword,setUserPassword] = useState(" ");
-    const email = 'amith@gmail.com';
-    const password = '123'; 
+    // const email = 'amith@gmail.com';
+    // const password = '123'; 
 
 
     return (
@@ -30,17 +32,37 @@ function LoginField(props: any) {
         </View>
 
     );
+
+    function getUser(){
+        getDocs(
+            query(
+                collection(db,'Users'),
+                where('Email','==',userEmail.toLowerCase()))).then(ds=>{
+                    if(ds.size == 1){
+                        const dt = ds.docs[0].data()
+                        if(dt.Password==userPassword){
+                            stack.navigate('Home');
+                        }else{
+                            Alert.alert('Message','Incorrect Email or Password');
+                        }
+                    }else{
+                        Alert.alert('Message','Incorrect Email!');
+                    }
+                })
+    }
+
     function gotoRegister() {
         stack.navigate('Register');
     }
 
     function gotoHome(){
-        if(userEmail==email && userPassword==password){
-        stack.navigate('Home');
-        }else{
-            Alert.alert('Message','Incorrect Email or Password');
-            console.log('incorrect');
-        }  
+        getUser();
+        // if(userEmail.toLowerCase() ==email && userPassword==password){
+        // stack.navigate('Home');
+        // }else{
+        //     Alert.alert('Message','Incorrect Email or Password');
+        //     console.log('incorrect');
+        // }  
     }
 
     
