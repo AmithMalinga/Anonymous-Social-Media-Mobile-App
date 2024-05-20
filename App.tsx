@@ -6,12 +6,23 @@ import RegisterScreen from './src/Screens/RegisterScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigation from './src/Screens/Navigations/AppNavigation';
 import 'react-native-gesture-handler';
+import { DefaultTheme, PaperProvider } from 'react-native-paper';
 
 function App(): React.JSX.Element {
+
+  const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: '#4DA5B9',
+      secondary: '#F50CA0',
+    },
+  };
+
   return (
-    <AppNavigation/>
-    // <LoginScreen/>
-    // <RegisterScreen/>
+    <PaperProvider>
+      <AppNavigation/>
+    </PaperProvider>
   );
 }
 
