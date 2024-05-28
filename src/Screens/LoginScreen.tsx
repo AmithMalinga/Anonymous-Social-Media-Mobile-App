@@ -16,16 +16,21 @@ function LoginField(props: any) {
     return (
         <View style={{ alignItems: 'center', marginTop: 283 }}>
             <View style={{ backgroundColor: 'transparent', borderWidth: 1, borderColor: '#4DA5B9', borderRadius: 5, width: 280, height: 45, paddingLeft: 10 }}>
-                <TextInput placeholder='Email' style={{ color: 'black' }} placeholderTextColor={'black'} onChangeText={(v)=>setUserEmail(v)}/>
+                <TextInput placeholder='Email' style={{ color: 'black' }} placeholderTextColor={'#aaa'} onChangeText={(v)=>setUserEmail(v)}/>
             </View>
             <View style={{ backgroundColor: 'transparent', borderWidth: 1, borderColor: '#4DA5B9', borderRadius: 5, width: 280, height: 45, paddingLeft: 10, marginTop: 20 }}>
-                <TextInput placeholder='Password' style={{ color: 'black' }} placeholderTextColor={'black'} secureTextEntry={true} onChangeText={(v)=>setUserPassword(v)}/>
+                <TextInput placeholder='Password' style={{ color: 'black' }} placeholderTextColor={'#aaa'} secureTextEntry={true} onChangeText={(v)=>setUserPassword(v)}/>
             </View>
             <ForgetPassword>Forgot Password</ForgetPassword>
-            <TouchableOpacity activeOpacity={0.7} onPress={gotoHome} style={{ backgroundColor: '#4DA5B9', padding: 10, borderRadius: 55, marginTop: 40, width: 280, height: 45 }}>
+            <TouchableOpacity 
+                activeOpacity={0.7} 
+                onPress={gotoHome} 
+                style={{ backgroundColor: '#4DA5B9', padding: 10, borderRadius: 55, marginTop: 40, width: 280, height: 45 }}>
                 {(isLogging) ? <LoggingScreen /> : <Text style={{ color: 'white', textAlign: 'center', fontSize: 15, fontWeight: '600' }}>Login</Text>}
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7} onPress={gotoRegister}>
+            <TouchableOpacity 
+                activeOpacity={0.7} 
+                onPress={gotoRegister}>
                 <ForgetPassword style={{ marginTop: 5 }}>Create new account</ForgetPassword>
             </TouchableOpacity>
         </View>
