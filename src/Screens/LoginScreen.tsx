@@ -1,9 +1,10 @@
 import { View, Text, Dimensions, TextInput, TouchableOpacity, Image, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../Firebase/firebaseinit';
 import { ActivityIndicator } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const { width, height } = Dimensions.get('window');
@@ -47,6 +48,7 @@ function LoginField(props: any) {
                     if(ds.size == 1){
                         const dt = ds.docs[0].data()
                         if(dt.Password==userPassword){
+                            AsyncStorage.setItem('email', userEmail.toLowerCase())
                             stack.navigate('Home');
                         }else{
                             Alert.alert('Message','Incorrect Email or Password');
@@ -91,6 +93,14 @@ function ForgetPassword(props: any) {
     const LoginScreen = (props: any) => {
 
     const stack = props.navigation;
+
+    useEffect(() => {
+        AsyncStorage.getItem('email').then( t => {
+                if (t){
+                    stack.navigate('Home');
+                }
+        })
+    },[])
 
     return (
         <View style={{ flex: 1 }}>
