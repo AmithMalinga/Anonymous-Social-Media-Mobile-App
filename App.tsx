@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import AppNavigation from './src/Screens/Navigations/AppNavigation';
 import 'react-native-gesture-handler';
 import { DefaultTheme, PaperProvider } from 'react-native-paper';
+import { Icon } from '@rneui/themed';
 
 function App(): React.JSX.Element {
 
